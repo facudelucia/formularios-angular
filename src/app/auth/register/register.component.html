@@ -1,0 +1,59 @@
+<h2>Validaciones reactivas</h2>
+<hr>
+<div class="row">
+    <div class="col">
+        <form [formGroup]="miFormulario" (ngSubmit)="crear()">
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                    <span *ngIf="campoNoValido('nombre')" class="form-text text-danger">
+                        Debe de ser un nombre valido
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                    <span *ngIf="campoNoValido('email')" class="form-text text-danger">
+                        {{emailStrError}}
+                    </span>
+                </div>
+
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Username" formControlName="username">
+                    <span *ngIf="campoNoValido('username')" class="form-text text-danger">
+                        Debe de ser un username valido
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                    <span *ngIf="campoNoValido('password')" class="form-text text-danger">
+                        La contraseña debe tener al menos 6 caracteres
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirma</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Confirma" formControlName="confirmar">
+                    <span *ngIf="campoNoValido('confirmar')" class="form-text text-danger">
+                        Las contraseñas deben ser iguales
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button [disabled]="miFormulario.pending" class="btn btn-primary">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

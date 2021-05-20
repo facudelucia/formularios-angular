@@ -1,0 +1,40 @@
+<h2>Template: Dinamicos</h2>
+<hr>
+
+<form (ngSubmit)="guardar()" #miFormulario="ngForm">
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text" name="nombre" [ngModel]="persona.nombre" required placeholder="Nombre de la persona"
+                class="form-control">
+            <span *ngIf="nombreValido()" class="form-text text-danger">Campo obligatorio</span>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input type="text" placeholder="Agregar juego" class="form-control" [(ngModel)]="nuevoJuego"
+                    name="nuevoJuego">
+                <button (click)="agregarJuego()" class="btn btn-outline-primary" type="button">Agregar</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group" *ngFor="let item of persona.favoritos; let i = index">
+                <input class="form-control" [ngModel]="item.nombre" name="favorito{{i}}">
+                <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <div class="col-sm-12">
+            <button [disabled]="miFormulario.invalid" class="btn btn-primary float-end" type="button"
+                (click)="guardar()">Guardar</button>
+        </div>
+    </div>
+</form>
